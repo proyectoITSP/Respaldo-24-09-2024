@@ -1,0 +1,771 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+.Contenedor {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  height: 100vh;
+}
+
+.Encabezado {
+  grid-column: span 4;
+  grid-row: span 1;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+
+.TituloCatalogo {
+  text-align: center;
+  font-size: 56px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  color: #282120;
+  user-select: none;
+}
+.TituloVersatil {
+  text-align: center;
+  font-size: 34px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  color: #797b7e;
+  user-select: none;
+}
+
+.Catalogo {
+  z-index: 1;
+  position: relative;
+  grid-column: span 4;
+  grid-row: span 3;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  justify-content: center;
+}
+.Catalogo::-webkit-scrollbar {
+  width: 30px;
+  height: 20px;
+}
+.Catalogo::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 15px;
+  border: 5px solid #d9d9d9;
+  cursor: pointer;
+}
+.Catalogo::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+.Catalogo::-webkit-scrollbar-track {
+  background-color: #d9d9d9;
+  border-radius: 15px;
+}
+.Catalogo::-webkit-scrollbar-button {
+  display: none;
+}
+
+.Eleccion ,.Eleccion2{
+  position: relative;
+  z-index: 1;
+  margin: 3em 2.5em 1em 3em;
+  width: 10em;
+  height: 10em;
+  background-color: #fff;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 3em;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 30% auto;
+  cursor: pointer;
+  transition: all ease-in-out 150ms;
+  border: #fff 4px solid;
+}
+.Eleccion:hover, .Eleccion2:hover {
+  border: #555 4px solid;
+}
+
+.InfoEleccion2{
+  position: absolute;
+  z-index: 3;
+  bottom: 0.5em;
+  right: 0.5em;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #029daf;
+  border:#029daf 2px solid;
+  color: white;
+  font-size: 24px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.332);
+  display: none;
+  place-items: center;
+  transition: ease-in-out 100ms all;
+}
+.InfoEleccion2:hover {
+  border: #0a7c89 4px solid;
+}
+.InfoEleccion2:active {
+  background-color: #0a7c89; 
+  box-shadow: 2px 2px 2px #029eaf7b; 
+  transform: translateY(2px); 
+}
+
+.NombreEleccion {
+  border-radius: 1em;
+  display: grid;
+  place-items: center;
+  margin: 20px 20px 0px 20px;
+  border: 5px solid #d9d9d9;
+  border-bottom: none;
+  color: #797b7e;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  overflow-x: hidden;
+  user-select: none;
+}
+.ImagenEleccion {
+  border-radius: 1em;
+  margin: 1em 2.4em;
+  background-image: url(../imagenes//hamburguesa.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.VentanaModalProducto {
+  display: flex;
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  place-self: center;
+  background-color: #fff;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.321);
+  border-radius: 4em;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.VentanaModalProducto.show {
+  opacity: 2;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.VentanaModalProducto.hide {
+  opacity: 0;
+  transform: scale(0.8);
+  z-index:0;
+}
+
+.CerrarVM{
+  position:absolute;
+top: 0.8em;
+right: 0.8em;
+width:2em;
+height: 2em;
+font-weight: 700;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+background-color: #f98b89;
+color: #fff;
+box-shadow: 3px 3px 0px #d3828180; 
+border-radius: 50%;
+display: grid;
+place-content: center;
+border: 2px #f98b89 solid ;
+user-select: none;
+cursor: pointer;
+}
+.CerrarVM:hover {
+  border: #e66e6c 5px solid;
+}
+.CerrarVM:active {
+  background-color: #e66e6c; /* Color de fondo más oscuro para el estado presionado */
+  box-shadow: 2px 2px 2px rgba(255, 159, 157, 0.4); /* Sombra más pequeña para simular presión */
+  transform: translateY(2px); /* Desplaza el botón hacia abajo para simular presión */
+}
+.ContainerVMNyI{
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+min-width: 12em;
+}
+.NombreVMProducto{
+flex-grow: 0.4;
+display: grid;
+}
+.NombreVMProductoTexto{
+width: 75%;
+height: 80%;
+text-align: center;
+place-self: center;
+font-size: 24px;
+font-weight: 700;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+color: #fff;
+background-color: #797b7e;
+border-radius: 4em;
+display: grid;
+place-content: center;
+user-select: none;
+}
+.ImagenVMProducto{
+flex-grow: 1;
+
+display: grid;
+}
+.CargarImagenVMProducto{
+  width:58%;
+  height: 80%;
+  border-radius: 3em;
+  place-self: center;
+  background-image: url(../imagenes/hamburguesa.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.DescripcionVMProducto{
+flex-grow: 1;
+
+min-width: 12em;
+display: grid;
+}
+.DescripcionVMProductoTexto{
+width: 60%;
+height: 60%;
+place-self: center;
+border-radius: 3em;
+background-color: #acaaaa;
+color:#fff;
+text-align: left; 
+vertical-align: top; 
+resize: none;
+border: none;
+padding:30px;
+outline: none;
+cursor:default;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-weight: 700;
+}
+
+
+
+
+
+
+.Carrito {
+  z-index:4;
+  grid-column: span 2;
+  grid-row: span 4;
+  display: flex;
+}
+.CarritoContenedor {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.3);
+  flex-grow: 1;
+  margin: 1.5em 5em 1.5em 1em;
+  border-radius: 4em;
+  display: flex;
+  flex-direction: column;
+}
+
+.TituloCarrito {
+  flex-grow: 0.3;
+  place-content: center;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #282120;
+  user-select: none;
+}
+
+.CarritoBotonContenedor {
+  flex-grow: 0.7;
+  display: grid;
+  place-content: center;
+}
+
+.CarritoBoton {
+  background-color: #ff9e9d;
+  border-radius: 2em;
+  color: #fff;
+  box-shadow: 7px 7px 0px rgba(255, 159, 157, 0.438);
+  width: 9.5em;
+  height: 2.2em;
+  place-content: center;
+  display: grid;
+  font-size: 30px;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  border: 5px solid #ff9e9d;
+  transition: ease-in-out 100ms all;
+  cursor: pointer;
+  user-select: none;
+  user-select: none;
+}
+.CarritoBoton:hover {
+  border: #f98b89 5px solid;
+}
+.CarritoBoton:active {
+  background-color: #f98b89; /* Color de fondo más oscuro para el estado presionado */
+  box-shadow: 2px 2px 2px rgba(255, 159, 157, 0.4); /* Sombra más pequeña para simular presión */
+  transform: translateY(2px); /* Desplaza el botón hacia abajo para simular presión */
+}
+
+
+.CarritoDisplay {
+  flex-grow: 0.2;
+  background-color: #f7f7f7;
+  border-radius: 4em;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.CarritoTotal {
+  flex-grow: 14;
+  background-color: #d9d9d9;
+  border-radius: 4em;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.CarritoProductos {
+  flex-grow: 1;
+  display: grid;
+  padding: 18px 18px 0px 18px;
+}
+
+.ProductosSeleccionados {
+  height: 22.8em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.DescripcionProductoSeleccion {
+  position: absolute;
+  z-index: 3;
+  top: 8em;
+  width: 85%;
+  height: 15em;
+  background-color: #fff;
+  border-radius: 2em;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.341);
+  display: none;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  opacity: 0; 
+  transform: translateY(-50px); 
+  transition: opacity 0.5s ease, transform 0.5s ease; 
+}
+.DescripcionProductoSeleccion.show {
+  display: flex; 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+.DescripcionProductoSeleccion.hide {
+  opacity: 0; 
+  transform: translateY(-50px); 
+  transition: opacity 0.5s ease, transform 0.5s ease; 
+}
+
+
+.TituloDescripcionSeleccion{
+flex-grow: 0.4;
+color: #797b7e;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-size: 20px;
+font-weight: 700;
+text-align:center ;
+user-select: none;
+}
+.InputDescripcionSeleccion{
+flex-grow: 2;
+background-color: #d9d9d9;
+border: none;
+border-radius: 3em;
+width:65%;
+justify-self: center;
+align-self: center;
+outline: none;
+color: #7a797d;
+padding:30px;
+text-align: left; 
+vertical-align: top; 
+resize: none;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-weight: 700;
+}
+.BotonesDescripcionSeleccion{
+flex-grow: 2;
+display: grid;
+grid-template-columns: 50% 50%;
+grid-row: 100%;
+}
+.BotonAceptarDescripcion{
+background-color: #029daf;
+border:#029daf 4px solid;
+border-radius: 2em;
+width: 70%;
+place-self: center;
+height: 2.4em;
+box-shadow: 3px 3px 0px #029eaf7b;
+color:#fff;
+display: grid;
+place-content: center;
+font-weight: 700;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+cursor: pointer;
+transition: ease-in-out 100ms all;
+user-select: none;
+}
+.BotonAceptarDescripcion:hover {
+  border: #0a7c89 4px solid;
+}
+.BotonAceptarDescripcion:active {
+  background-color: #0a7c89; /* Color de fondo más oscuro para el estado presionado */
+  box-shadow: 2px 2px 2px #029eaf7b; /* Sombra más pequeña para simular presión */
+  transform: translateY(2px); /* Desplaza el botón hacia abajo para simular presión */
+}
+.BotonCancelarDescripcion{
+  background-color: #ff9e9d;
+  border:#ff9e9d 4px solid;
+  border-radius: 2em;
+  width: 70%;
+  place-self: center;
+  height: 2.4em;
+  box-shadow: 3px 3px 0px #ff9f9d73;
+  color:#fff;
+  display: grid;
+  place-content: center;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+  transition: ease-in-out 100ms all;
+  user-select: none;
+}
+.BotonCancelarDescripcion:hover {
+  border: #d38281 4px solid;
+}
+.BotonCancelarDescripcion:active {
+  background-color: #d38281; /* Color de fondo más oscuro para el estado presionado */
+  box-shadow: 2px 2px 2px #d3828192; /* Sombra más pequeña para simular presión */
+  transform: translateY(2px); /* Desplaza el botón hacia abajo para simular presión */
+}
+
+.ProductosSeleccionados::-webkit-scrollbar {
+  width: 30px;
+  height: 20px;
+}
+.ProductosSeleccionados::-webkit-scrollbar-thumb {
+  background-color: #d9d9d9;
+  border-radius: 15px;
+  border: 4px solid #fff;
+  cursor: pointer;
+}
+.ProductosSeleccionados::-webkit-scrollbar-thumb:hover {
+  background-color: #acaaaa;
+}
+.ProductosSeleccionados::-webkit-scrollbar-track {
+  background-color: #fff;
+  border-radius: 15px;
+}
+.ProductosSeleccionados::-webkit-scrollbar-button {
+  display: none;
+}
+
+.ProductoSeleccion {
+  border-radius: 3em;
+  width: 93%;
+  height: 4.4em;
+  background-color: #fff;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.322);
+  flex-shrink: 0;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 20% 35% 18% 27%;
+}
+
+.CantidadProducto {
+  display: grid;
+  grid-template-rows: 1.46666em 1.46666em 1.46666em;
+  grid-template-columns: 100%;
+}
+.CantidadBotonA {
+  text-align: center;
+  color: #797b7e;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    user-select: none;
+}
+.AumentarBoton {
+  cursor: pointer;
+  width: 25px;
+  user-select: none;
+}
+.CantidadIndicador {
+  text-align: center;
+  color: #797b7e;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    user-select: none;
+}
+.CantidadBotonB {
+  text-align: center;
+  color: #797b7e;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    user-select: none;
+}
+.ReducirBoton {
+  cursor: pointer;
+  width: 25px;
+  display: flex;
+  flex-direction: column;
+  place-content: end;
+}
+
+.NombreProductoSeleccionados {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  place-items: center;
+  overflow-x: hidden;
+}
+.NombreProductoSeleccionado {
+  color: #797b7e;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  user-select: none;
+}
+
+.PrecioProducto {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  place-items: center;
+  overflow-x: hidden;
+  user-select: none;
+}
+.PrecioProductoSeleccionado {
+  color: #797b7e;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  margin: 2px 0em 0em 0em;
+}
+
+.BotonComentarioContenedor {
+  display: grid;
+  place-items: center;
+  user-select: none;
+}
+.BotonComentario {
+  z-index: 2;
+  position: relative;
+  background-color: #029daf;
+  border: #029daf 4px solid;
+  box-shadow: 3px 3px 0px #029eaf5f;
+  border-radius: 2em;
+  width: 3em;
+  height: 2.2em;
+  display: grid;
+  cursor: pointer;
+}
+.BotonComentario:hover {
+  border: #05707b 4px solid;
+}
+.BotonComentario:active {
+  background-color: #029daf; /* Color de fondo más oscuro para el estado presionado */
+  box-shadow: 2px 2px 2px #029eaf5f; /* Sombra más pequeña para simular presión */
+  transform: translateY(2px); /* Desplaza el botón hacia abajo para simular presión */
+}
+.IndicadorEscritura{
+z-index: 3;
+position: absolute;
+top: 8.3px;
+right: 11.3px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background-color: red;
+}
+
+.ImagenBotonComentario {
+  z-index:3;
+  background-image: url(../imagenes/Nube2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border-radius: 2em;
+  margin: 8px 5px 8px 5px;
+}
+
+.VolverAtrasEleccion{
+  z-index: 2;
+  margin: 3em 2.5em 1em 3em;
+  width: 10em;
+  height: 10em;
+  background-color: #d9d9d9e2;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.249);
+  border-radius: 3em;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all ease-in-out 150ms;
+  border: #d9d9d9e2 4px solid;
+}
+.VolverAtrasEleccion:hover {
+  border: #6a6767b7 4px solid;
+}
+
+.ImagenVolverAtrasEleccion{
+  background-image: url(../imagenes/flecha.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 80%;
+  height: 80%;
+}
+
+@media screen and (max-width:1350px) {
+  .Contenedor {
+    position: relative;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .Encabezado {
+    grid-column: span 6;
+    grid-row: span 1;
+  }
+  .Catalogo {
+  grid-column: span 6;
+  grid-row: span 3;
+  }
+  .Carrito {
+    display: none;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 37em; 
+    max-width: 100vw; 
+    min-width: 22em; 
+    height:60em;
+    opacity: 0; 
+    transform: scale(0.95); 
+    transition: opacity 0.5s ease, transform 0.5s ease; 
+  }
+
+  .Carrito.show {
+    display: grid; 
+    opacity: 1; 
+    transform: scale(1);
+}
+
+  .ContenedorBotonCerrar{
+  flex-grow: 0.3;
+  display:grid;
+  place-content: center;
+  }
+  .BotonCerrarCarrito{
+  height: 5.2em;
+  width: 5.2em;
+  border-radius: 100%;
+  background-color: #fff;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.418);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border: #fff 4px solid;
+  transition: all ease-in-out 150ms;
+  }.BotonCerrarCarrito:hover{
+    border: #797b7e 4px solid;
+  }
+  .ImagenCerrarCarrito{
+    background-image: url(../imagenes/CerrarCarrito.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 60%;
+    height: 60%;
+  }
+
+  .ContenedorBotonAbrirCarrito{
+    position: absolute;
+    top: 3em;
+    justify-self: end;
+    width: 97vw;
+    height: 7em;
+    display: grid;
+    place-items: start;
+  }
+  .BotonAbrirCarrito{
+    width: 5.4em;
+    height: 5.4em;
+    border-radius: 100%;
+    background-color: #fff;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.367);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border: #fff 4px solid;
+    transition: all ease-in-out 150ms;
+  }
+  .BotonAbrirCarrito:hover{
+    border: #797b7e 4px solid;
+  }
+
+  .ImagenAbrirCarrito{
+    background-image: url(../imagenes/image.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 75%;
+    height: 75%;
+  }
+
+  
+.Eleccion {
+  margin: 3em 2em 1em 2em;
+}
+
+
+
+}

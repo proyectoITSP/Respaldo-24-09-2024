@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.encabezado{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 6rem;
+}
+body{
+    background-color: #F7F7F7;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+.boton_volver_inicio{
+    height: 3.5rem;
+    width: 3.5rem;
+    background-image: url('../imagenes/flecha.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 2rem;
+    border-radius: 50%;
+    border: solid 6px #696869;
+}
+.principal{
+    display: flex;
+    margin-top: 3rem;
+    border-radius: 30px;
+    border-right: 8px solid #BBB9B9;
+    border-bottom: 8px solid #BBB9B9;
+    background-color: #FFFFFF;
+    align-items: center;
+    height: 26rem;
+    width: 28rem;
+    flex-direction: column;
+}
+.principal h1{
+    font-size: 2.5rem;
+    text-align: center;
+    user-select: none;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    font-family: 'Open Sans';
+}
+
+.principal p{
+    font-size: 1.4rem;
+    text-align: center;
+    user-select: none;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-family:'Open Sans';
+    color: #797B7E;
+}
+
+.pie_principal_botones{
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    height: 5rem;
+}
+.btn_volver_atras{
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    width: 9rem;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: solid 5px #B8B6B6;
+    border-right: solid 5px #B8B6B6;
+    background-color: #797B7E;
+    color: white;
+    margin-left: 1rem;
+    height: 4rem;
+}
+.btn_cancelar_pedido{
+    border-radius: 30px;
+    border: none;
+    width: 9rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 1rem;
+    border-bottom: solid 5px #FFD3D3;
+    border-right: solid 5px #FFD3D3;
+    background-color: #FF9E9D;
+    color: white;
+    height: 4rem;
+}
+.btn_confirmar_llegada{
+    border-radius: 30px;
+    border: none;
+    width: 9rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 1rem;
+    border-bottom: solid 5px #CAE0D0;
+    border-right: solid 5px #CAE0D0;
+    background-color: #9FC7AA;
+    color: white;
+    height: 4rem;
+}
+@media only screen and (max-width: 480px) {
+    .principal{
+        width: 22rem;
+        height: 27rem;
+    }
+}
+@media only screen and (max-width: 370px) {
+    .principal{
+        height: 34rem;
+        width: 20rem;
+    }
+    .pie_principal_botones{
+        flex-direction: column;
+        height: 10rem;
+    }
+    .btn_volver_atras{
+        margin-left: -1rem;
+    }
+}
